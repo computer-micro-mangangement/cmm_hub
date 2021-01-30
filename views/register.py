@@ -1,20 +1,47 @@
+import json
+import platform
+
+import requests as req
+
 from storage import app
+from sysInfo import printAll
+import config
 
 
 def registerPress():
     addr: str = app.getEntry("Server Address")
     token: str = app.getEntry("Device-Token")
-    if addr != "" and token != "":
-        if addr.
-            app.setLabel("info", "Trying to contact cmm server")
+    uname = platform.uname()
 
-        app.setLabel("info", "Successfully registered device")
-        app.hideSubWindow("Register this device")
+    if addr != "" and token != "":
+        if "http" not in addr:
+            addr = "http://" + addr
+        app.setLabel("info", "Trying to contact cmm server")
+        registerRequest = req.post(addr + "/api/devices/register", json={
+            "loginsecret": token,
+            "name": uname.node,
+            "os": uname.system,
+            "osshort": uname.system[0:3],
+            "arch": uname.machine,
+            "mac": "Na"
+        }, verify=False)
+        responseCode = registerRequest.status_code
+        if responseCode <= 200 or responseCode >= 300:
+            app.setLabel("info", "Something went wrong, token probably invalid\nStatus code: " + str(responseCode))
+        else:
+            jsonData = json.loads(registerRequest.text)
+            config.config["endpointURL"] = addr
+            config.config["secret"] = jsonData["clientSecret"]
+            config.config["uuid"] = jsonData["uuid"]
+            config.save(config.config)
+            app.setLabel("info", "Successfully registered device")
+            app.hideSubWindow("Register this device")
     else:
         app.setLabel("info", "You have to specify everything")
 
 
 def openRegisterWindow():
+    printAll()
     app.startSubWindow("Register this device", modal=True)
     app.setBg("#2d2d2d", override=True)
     app.setFg("whitesmoke", override=True)

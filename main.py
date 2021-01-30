@@ -1,6 +1,7 @@
 # import the library
 
 import register
+import config
 from storage import app
 
 
@@ -28,6 +29,8 @@ app.setFont(size=10)
 
 app.addLabel("test", "hulu")
 
-register.openRegisterWindow()
+config.config = config.load()
+if config.config["secret"] == "":
+    register.openRegisterWindow()
 
 app.go()
