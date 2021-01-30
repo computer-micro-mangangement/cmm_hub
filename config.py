@@ -2,8 +2,26 @@ import os
 import json
 
 config = {
-    "secret": ""
+    "secret": "",
+    "uuid": "",
+    "endpointURL": ""
 }
+
+
+def getDeviceSecret():
+    return config["secret"]
+
+
+def getDeviceUUID():
+    return config["uuid"]
+
+
+def getServerAddress():
+    addr = config["endpointURL"]
+    if addr.endswith("/"):
+        addr = addr[:-1]
+    return addr
+
 
 def is_file_empty(file_path):
     """ Check if file is empty by confirming if its size is 0 bytes"""

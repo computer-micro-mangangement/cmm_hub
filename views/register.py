@@ -52,6 +52,7 @@ def openRegisterWindow():
     app.setPadding([20, 20])
     app.setStretch("column")
     app.setSticky("nesw")
+    app.setOnTop(True)
 
     app.enableEnter(registerPress)
 

@@ -1,36 +1,23 @@
 # import the library
 
-import register
+from views import register, containerHandler
 import config
 from storage import app
 
-
-def press(button):
-    if button == "Cancel":
-        app.stop()
-    else:
-        usr = app.getEntry("Username")
-        pwd = app.getEntry("Password")
-        print("User:", usr, "Pass:", pwd)
-
-
-def login(btn):
-    app.hideSubWindow("Login")
-    app.show()
-
-
-# create a GUI variable called app
-
+# create app container with basi settings
 app.setBg("#2d2d2d", override=True)
 app.setFg("whitesmoke", override=True)
 app.setIcon("./favicon.ico")
 app.setResizable(canResize=True)
 app.setFont(size=10)
+app.setPadding([20, 20])
 
-app.addLabel("test", "hulu")
-
+# load config, create if not exists
 config.config = config.load()
 if config.config["secret"] == "":
     register.openRegisterWindow()
+
+# creating content container
+containerHandler.create()
 
 app.go()
