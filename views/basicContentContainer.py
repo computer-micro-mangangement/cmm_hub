@@ -24,7 +24,8 @@ def create(name: str, contentFunc):
     app.setFg("whitesmoke", override=True)
 
     app.setStretch("none")
-    app.setSticky("nesw")
+    app.setSticky("nw")
+    app.setPadding([2, 2])
     contentFunc()
 
     app.stopScrollPane()

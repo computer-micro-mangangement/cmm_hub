@@ -1,6 +1,7 @@
-#ToDo page to view current device
+# ToDo page to view current device
 # (no backend needed)
-
+import helper
+import storage
 from storage import app, navBarElementsCallName, navBarElements
 import config
 from views import basicContentContainer
@@ -9,7 +10,8 @@ modulePrefix = "thisDevice"
 
 
 def content():
-    app.addLabel(modulePrefix + "test", "Device")
+    deviceInfo = storage.getDeviceInfo()
+    helper.displayJson(modulePrefix, deviceInfo)
 
 
 def createContent():

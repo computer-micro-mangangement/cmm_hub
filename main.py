@@ -3,21 +3,28 @@
 from views import register, containerHandler
 import config
 from storage import app
+import urllib3
 
-# create app container with basi settings
-app.setBg("#2d2d2d", override=True)
-app.setFg("whitesmoke", override=True)
-app.setIcon("./favicon.ico")
-app.setResizable(canResize=True)
-app.setFont(size=10)
-app.setPadding([20, 20])
 
-# load config, create if not exists
-config.config = config.load()
-if config.config["secret"] == "":
-    register.openRegisterWindow()
+def start():
+    urllib3.disable_warnings()
+    # create app container with basi settings
+    app.setBg("#2d2d2d", override=True)
+    app.setFg("whitesmoke", override=True)
+    app.setIcon("./favicon.ico")
+    app.setResizable(canResize=True)
+    app.setFont(size=10)
+    app.setPadding([20, 20])
 
-# creating content container
-containerHandler.create()
+    # load config, create if not exists
+    config.config = config.load()
+    if config.config["secret"] == "":
+        register.openRegisterWindow()
 
-app.go()
+    # creating content container
+    containerHandler.create()
+
+    app.go()
+
+
+start()

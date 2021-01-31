@@ -1,5 +1,6 @@
-#ToDo info page for server
+# ToDo info page for server
 # equivalent to /api/info
+import helper
 import storage
 from storage import app
 import config
@@ -9,8 +10,8 @@ modulePrefix = "server"
 
 
 def content():
-    storage.getServerInfo()
-    app.addLabel(modulePrefix + "test", "Server")
+    serverInfo = storage.getServerInfo()
+    helper.displayJson(modulePrefix, serverInfo)
 
 
 def createContent():
