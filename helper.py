@@ -12,3 +12,4 @@ def displayJson(prefix, jsonData, indentation=0):
         else:
             app.addLabel(prefix + entry, str("    " * indentation) + name + ":")
             displayJson(prefix, value, (indentation + 1))
+

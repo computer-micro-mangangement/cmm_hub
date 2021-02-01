@@ -56,9 +56,9 @@ def getInstallableModules():
         for line in lines:
             elements = line.split(',')
             modules[elements[0]] = {}
-            modules[elements[0]]["link"] = elements[1]
+            modules[elements[0]]["link"] = elements[1].replace(" ", "")
             modules[elements[0]]["name"] = elements[0].capitalize()
-            modules[elements[0]]["version"] = elements[2]
+            modules[elements[0]]["version"] = elements[2].replace(" ", "")
         return modules
 
 

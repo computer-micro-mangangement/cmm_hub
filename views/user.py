@@ -1,5 +1,3 @@
-#ToDo page to view user information
-# equivalent to /api/user/currentUser
 import helper
 import storage
 from storage import app

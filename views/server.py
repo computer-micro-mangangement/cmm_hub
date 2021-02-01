@@ -1,5 +1,3 @@
-# ToDo info page for server
-# equivalent to /api/info
 import helper
 import storage
 from storage import app

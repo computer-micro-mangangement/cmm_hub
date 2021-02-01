@@ -1,5 +1,3 @@
-# ToDo page to view current device
-# (no backend needed)
 import helper
 import storage
 from storage import app, navBarElementsCallName, navBarElements
