@@ -22,9 +22,9 @@ def buttonPress(btnName: str):
     split = btnName.lower().split(" ")
     func = split[0]
     moduleName = split[1]
-    changeTitleText(moduleName, moduleName.capitalize() + " (Downloading)")
-    moduleHelper.downloadModule(moduleName)
-    changeTitleText(moduleName, moduleName.capitalize() + " (Downloaded)")
+    changeTitleText(moduleName, moduleName.capitalize() + " (Downloading and  Installing)")
+    moduleHelper.installModule(moduleName)
+    changeTitleText(moduleName, moduleName.capitalize() + " (Installed)")
 
 
 def createModuleEntry(name: str, row: int):

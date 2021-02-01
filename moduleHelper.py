@@ -5,6 +5,7 @@ import urllib.request
 from zipfile import ZipFile
 import config
 import storage
+import platform
 
 modulesPath = "./modules/"
 moduleInfoFileName = "info.json"
@@ -80,3 +81,14 @@ def downloadModule(name):
         shutil.move(unzippedPath + "/" + items[0], path)
     shutil.rmtree(downloadPath)
 
+
+def installModule(name):
+    downloadModule(name)
+    fileAdd = ""
+    if "win" in platform.system().lower():
+        fileAdd = ".bat"
+    else:
+        fileAdd = ".sh"
+    runFilePath = modulesPath + name + "/install" + fileAdd
+    if os.path.isfile(runFilePath):
+        os.system(runFilePath)
